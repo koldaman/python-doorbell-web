@@ -6,7 +6,13 @@
 
 	<div class="collapse navbar-collapse" id="navbarsExampleDefault">
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active">
+			<li class="nav-item {% if 'log' == active_page %}active{% endif %}">
+				<a class="nav-link" href="/">Log <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item {% if 'config' == active_page %}active{% endif %}">
+				<a class="nav-link" href="/config">Settings</a>
+			</li>
+			<li class="nav-item {% if 'ring' == active_page %}active{% endif %}">
 				<a class="nav-link" href="/ring/500">Ring</a>
 			</li>
 		</ul>

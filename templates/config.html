@@ -1,0 +1,127 @@
+{% set active_page = "config" %}
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="form-group">
+	<form style="padding: 10px 0" method="post">
+		<div class="form-row">
+			<div class="form-group col-md-4">
+				<label for="mqttHost">MQTT Host</label>
+				<input type="text" class="form-control" id="mqttHost" name="mqttHost" value="{{ config_data['mqtt']['host'] }}" placeholder="MQTT Host">
+			</div>
+			<div class="form-group col-md-2">
+				<label for="mqttPort">Port</label>
+				<input type="number" class="form-control" id="mqttPort" name="mqttPort" value="{{ config_data['mqtt']['port'] }}" placeholder="Port">
+			</div>
+			<div class="form-group col-md-3">
+				<label for="mqttClient">Client ID</label>
+				<input type="text" class="form-control" id="mqttClient" name="mqttClient" value="{{ config_data['mqtt']['client'] }}" placeholder="Client ID">
+			</div>
+			<div class="form-group col-md-3">
+				<label for="mqttChannel">Channel</label>
+				<input type="text" class="form-control" id="mqttChannel" name="mqttChannel" value="{{ config_data['mqtt']['channel'] }}" placeholder="Channel">
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-4">
+				<label for="pbOwner1">Pushbullet Owner</label>
+				<input type="text" class="form-control" id="pbOwner1" name="pbOwner1" value="{{ '' if not config_data['pushbullet'][0] else config_data['pushbullet'][0]['owner'] }}" placeholder="Owner">
+			</div>
+			<div class="form-group col-md-4">
+				<label for="pbApiKey1">Api Key</label>
+				<input type="text" class="form-control" id="pbApiKey1" name="pbApiKey1" value="{{ '' if not config_data['pushbullet'][0] else config_data['pushbullet'][0]['apiKey'] }}" placeholder="API key">
+			</div>
+			<div class="form-group col-md-2">
+				<label>Ring</label>
+				<div><input id="cbPbRing1" type="checkbox" {{ '' if not config_data['pushbullet'][0] or not config_data['pushbullet'][0]['ring'] else 'checked' }} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="ON" data-off="OFF"></div>
+				<input type="hidden" id="pbRing1" name="pbRing1" value="{{ '' if not config_data['pushbullet'][0] else config_data['pushbullet'][0]['ring'] }}">
+			</div>
+			<div class="form-group col-md-2">
+				<label for="pbDoor1">Door</label>
+				<div><input id="cbPbDoor1" type="checkbox" {{ '' if not config_data['pushbullet'][0] or not config_data['pushbullet'][0]['door'] else 'checked' }} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="ON" data-off="OFF"></div>
+				<input type="hidden" id="pbDoor1" name="pbDoor1" value="{{ '' if not config_data['pushbullet'][0] else config_data['pushbullet'][0]['door'] }}">
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-4">
+				<input type="text" class="form-control" id="pbOwner2" name="pbOwner2" value="{{ '' if not config_data['pushbullet'][1] else config_data['pushbullet'][1]['owner'] }}" placeholder="Owner">
+			</div>
+			<div class="form-group col-md-4">
+				<input type="text" class="form-control" id="pbApiKey2" name="pbApiKey2" value="{{ '' if not config_data['pushbullet'][1] else config_data['pushbullet'][1]['apiKey'] }}" placeholder="API key">
+			</div>
+			<div class="form-group col-md-2">
+				<div><input id="cbPbRing2" type="checkbox" {{ '' if not config_data['pushbullet'][1] or not config_data['pushbullet'][1]['ring'] else 'checked' }} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="ON" data-off="OFF"></div>
+				<input type="hidden" id="pbRing2" name="pbRing2" value="{{ '' if not config_data['pushbullet'][1] else config_data['pushbullet'][1]['ring'] }}">
+			</div>
+			<div class="form-group col-md-2">
+				<div><input id="cbPbDoor2" type="checkbox" {{ '' if not config_data['pushbullet'][1] or not config_data['pushbullet'][1]['door'] else 'checked' }} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="ON" data-off="OFF"></div>
+				<input type="hidden" id="pbDoor2" name="pbDoor2" value="{{ '' if not config_data['pushbullet'][1] else config_data['pushbullet'][1]['door'] }}">
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-4">
+				<input type="text" class="form-control" id="pbOwner3" name="pbOwner3" value="{{ '' if not config_data['pushbullet'][2] else config_data['pushbullet'][2]['owner'] }}" placeholder="Owner">
+			</div>
+			<div class="form-group col-md-4">
+				<input type="text" class="form-control" id="pbApiKey3" name="pbApiKey3" value="{{ '' if not config_data['pushbullet'][2] else config_data['pushbullet'][2]['apiKey'] }}" placeholder="API key">
+			</div>
+			<div class="form-group col-md-2">
+				<div><input id="cbPbRing3" type="checkbox" {{ '' if not config_data['pushbullet'][2] or not config_data['pushbullet'][2]['ring'] else 'checked' }} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="ON" data-off="OFF"></div>
+				<input type="hidden" id="pbRing3" name="pbRing3" value="{{ '' if not config_data['pushbullet'][2] else config_data['pushbullet'][2]['ring'] }}">
+			</div>
+			<div class="form-group col-md-2">
+				<div><input id="cbPbDoor3" type="checkbox" {{ '' if not config_data['pushbullet'][2] or not config_data['pushbullet'][2]['door'] else 'checked' }} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="ON" data-off="OFF"></div>
+				<input type="hidden" id="pbDoor3" name="pbDoor3" value="{{ '' if not config_data['pushbullet'][2] else config_data['pushbullet'][2]['door'] }}">
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-4">
+				<input type="text" class="form-control" id="pbOwner4" name="pbOwner4" value="{{ '' if not config_data['pushbullet'][3] else config_data['pushbullet'][3]['owner'] }}" placeholder="Owner">
+			</div>
+			<div class="form-group col-md-4">
+				<input type="text" class="form-control" id="pbApiKey4" name="pbApiKey4" value="{{ '' if not config_data['pushbullet'][3] else config_data['pushbullet'][3]['apiKey'] }}" placeholder="API key">
+			</div>
+			<div class="form-group col-md-2">
+				<div><input id="cbPbRing4" type="checkbox" {{ '' if not config_data['pushbullet'][3] or not config_data['pushbullet'][3]['ring'] else 'checked' }} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="ON" data-off="OFF"></div>
+				<input type="hidden" id="pbRing4" name="pbRing4" value="{{ '' if not config_data['pushbullet'][3] else config_data['pushbullet'][3]['ring'] }}">
+			</div>
+			<div class="form-group col-md-2">
+				<div><input id="cbPbDoor4" type="checkbox" {{ '' if not config_data['pushbullet'][3] or not config_data['pushbullet'][3]['door'] else 'checked' }} data-toggle="toggle" data-onstyle="success" data-offstyle="danger" data-on="ON" data-off="OFF"></div>
+				<input type="hidden" id="pbDoor4" name="pbDoor4" value="{{ '' if not config_data['pushbullet'][3] else config_data['pushbullet'][3]['door'] }}">
+			</div>
+		</div>
+		<button type="submit" class="btn btn-primary" value="Save">Save</button>
+	</form>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+	$(function() {
+		$('#cbPbRing1').change(function() {
+			$('#pbRing1').val($(this).prop('checked') ? "1" : "0");
+		})
+		$('#cbPbRing2').change(function() {
+			$('#pbRing2').val($(this).prop('checked') ? "1" : "0");
+		})
+		$('#cbPbRing3').change(function() {
+			$('#pbRing3').val($(this).prop('checked') ? "1" : "0");
+		})
+		$('#cbPbRing4').change(function() {
+			$('#pbRing4').val($(this).prop('checked') ? "1" : "0");
+		})
+
+		$('#cbPbDoor1').change(function() {
+			$('#pbDoor1').val($(this).prop('checked') ? "1" : "0");
+		})
+		$('#cbPbDoor2').change(function() {
+			$('#pbDoor2').val($(this).prop('checked') ? "1" : "0");
+		})
+		$('#cbPbDoor3').change(function() {
+			$('#pbDoor3').val($(this).prop('checked') ? "1" : "0");
+		})
+		$('#cbPbDoor4').change(function() {
+			$('#pbDoor4').val($(this).prop('checked') ? "1" : "0");
+		})
+	})
+</script>
+
+{% endblock %}
